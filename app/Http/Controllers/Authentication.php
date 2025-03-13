@@ -10,11 +10,23 @@ use Illuminate\Http\Request;
 
 class Authentication extends Controller
 {
+    public function doLogin()
+    {
+        return view('dashboard.auth.login');
+    }
+
+
+    public function doRegist()
+    {
+        return view('dashboard.auth.register');
+    }
+
+
     public function login(Login $request)
     {
         $credentials = $request->only('email','password');
         if(Auth::attempt($credentials)){
-            return redirect()->route('dashboard.index');
+            return redirect()->route('Home');
         };
 
 
@@ -26,11 +38,13 @@ class Authentication extends Controller
 
     public function register(Register $request)
     {
-        $credentials =  $request->validated();
-        $credentials['password'] = bcrypt($credentials['password']);
+        $validatedData =  $request->validated();
+        $validatedData['password'] = bcrypt($validatedData['password']);
 
-        $user = User::create($credentials);
+        $user = User::create($validatedData);
 
         Auth::login($user);
+        return redirect()->route('Home')->withSuccess('Great! You have Successfully logged in');
+
     }
 }

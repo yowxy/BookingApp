@@ -23,7 +23,8 @@ class Register extends FormRequest
     {
         return [
             'email' => 'required|email|',
-            'password' => 'required|password|min:8|max:255',
+            'password' => 'required|min:8|max:255|confirmed',
+            'password_confirmation' => 'required|same:password',
             'name' => 'required|string|min:8',
             'alamat' => 'required|string|max:255',
             'no_handphone' => 'required|integer|min:12'
