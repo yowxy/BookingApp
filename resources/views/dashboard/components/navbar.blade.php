@@ -27,15 +27,23 @@
                     <img class="h-8 w-auto" src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Logo">
                 </a>
 
-                <!-- Desktop Menu -->
+
                 <div class="hidden sm:flex space-x-4">
                     <a href="#" class="text-white bg-gray-900 px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
                     <a href="#" class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Team</a>
                     <a href="#" class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Projects</a>
                     <a href="#" class="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Calendar</a>
                 </div>
+                <!-- Desktop Menu -->
 
-                <!-- Profile Dropdown -->
+                @guest
+                    <div class="text-white font-bold">
+                        <a href="{{ route('auth.LoginGet') }}" class="mx-3">Login</a>
+                        <a href="{{ route('auth.RegisterGet') }}">Register</a>
+                    </div>
+                @endguest
+
+                @auth
                 <div class="relative">
                     <button @click="openProfile = !openProfile" class="flex items-center rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2">
                         <span class="sr-only">Open user menu</span>
@@ -48,6 +56,8 @@
                         <a href="#" class="block px-4 py-2 text-gray-700">Sign out</a>
                     </div>
                 </div>
+                @endauth
+                <!-- Profile Dropdown -->
             </div>
         </div>
 
