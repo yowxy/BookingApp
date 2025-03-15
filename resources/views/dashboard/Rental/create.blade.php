@@ -9,7 +9,7 @@
         @csrf
         <div class="mb-4">
             <label class="block">Nama</label>
-            <input type="text" name="user_id" required class="w-full border p-2 rounded" placeholder="{{ $user->name }}">
+            <input type="text" name="user_id" required class="w-full border p-2 rounded" value="{{ $user->name }}">
         </div>
         {{-- <input type="hidden" name="user_id" value="{{ auth()->id() }}"> --}}
         <div class="mb-4">

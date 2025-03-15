@@ -23,7 +23,7 @@ class RentalPSController extends Controller
      */
     public function create()
     {
-        $user = User::first();
+        $user = User::all();
         return view ('dashboard.Rental.create', compact('user'));
     }
 
@@ -101,9 +101,9 @@ class RentalPSController extends Controller
         if (!$booking) {
             return redirect()->back()->with('error', 'Payment not found');
         }
-    
+
         $booking->delete();
-    
+
         return redirect()->route('rental.index')->with('success', 'Payment deleted successfully');
 
     }

@@ -47,4 +47,10 @@ class Authentication extends Controller
         return redirect()->route(' Dashnboard')->withSuccess('Great! You have Successfully logged in');
 
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('auth.LoginGet');
+    }
 }
