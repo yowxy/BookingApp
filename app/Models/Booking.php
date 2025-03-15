@@ -13,7 +13,7 @@ class Booking extends Model
     protected $table = 'bookings';
     protected $fillable =
     [
-        'users_id',
+        'user_id',
         'booking_date',
         'service',
         'status',
@@ -22,7 +22,7 @@ class Booking extends Model
 
 
     public function user (){
-        $this->belongsTo(User::class);
+       return  $this->belongsTo(User::class);
     }
 
     public function payments() {

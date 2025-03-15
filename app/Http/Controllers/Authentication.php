@@ -26,7 +26,7 @@ class Authentication extends Controller
     {
         $credentials = $request->only('email','password');
         if(Auth::attempt($credentials)){
-            return redirect()->route('Home');
+            return redirect()->route(' Dashnboard');
         };
 
 
@@ -44,7 +44,7 @@ class Authentication extends Controller
         $user = User::create($validatedData);
 
         Auth::login($user);
-        return redirect()->route('Home')->withSuccess('Great! You have Successfully logged in');
+        return redirect()->route(' Dashnboard')->withSuccess('Great! You have Successfully logged in');
 
     }
 }

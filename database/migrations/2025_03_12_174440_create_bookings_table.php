@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->bigInteger('booking_date');
+            $table->date('booking_date');
             $table->enum('service', ['PS4','PS5']);
             $table->enum('status', ['pending','paid','canceled']);
             $table->decimal('price', 10,2);

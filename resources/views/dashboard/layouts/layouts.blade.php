@@ -7,6 +7,7 @@
         <div class="container w-full" >
             @yield('dashboard')
             @yield('rentalPS')
+            @yield('content')
         </div>
     </main>
 </div>

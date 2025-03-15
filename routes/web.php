@@ -3,6 +3,7 @@
 use App\Http\Controllers\Authentication;
 use App\Http\Controllers\Dashboard as ControllersDashboard;
 use App\Http\Controllers\Dashnboard;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RentalPSController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +19,12 @@ Route::get('/login',function(){
 
 
 Route::get('/', [ ControllersDashboard::class, 'index'])->name(' Dashnboard');
+Route::get('/payment',[PaymentController::class, 'index'])->name('payment');
 
 Route::prefix('rental')->name('rental.')->group(function(){
     Route::get('/index',[RentalPSController::class, 'index'])->name('index');
+    Route::get('/create',[RentalPSController::class, 'create'])->name('create');
+    Route::post('/create', [RentalPSController::class, 'store'])->name('store');
 });
 
 
