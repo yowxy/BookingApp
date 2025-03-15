@@ -31,7 +31,7 @@ class RentalPSController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    { 
+    {
         if (!auth()->check()) {
             return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu.');
         }
@@ -45,7 +45,7 @@ class RentalPSController extends Controller
 
         // price list
 
-        $priceList = ['PS4' => 3000, 'PS5' => 5000];
+        $priceList = ['PS4' => 30000, 'PS5' => 40000];
         $price = $priceList[$request->service];
 
         // Cek apakah hari Sabtu atau Minggu, lalu tambahkan biaya weekend
@@ -53,7 +53,7 @@ class RentalPSController extends Controller
         if ($date->isWeekend()) {
             $price += 50000;
         }
-    
+
         // Simpan booking ke database dengan field `price`
         $booking = Booking::create([
             'user_id' => auth()->id(),
@@ -62,9 +62,9 @@ class RentalPSController extends Controller
             'price' => $price, // Ubah `total_price` jadi `price`
             'status' => 'pending',
         ]);
-    
+
         return redirect()->route('payment', $booking->id);
-       
+
     }
 
     /**
@@ -96,6 +96,15 @@ class RentalPSController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $booking = Booking::where('id', $id);
+
+        if (!$booking) {
+            return redirect()->back()->with('error', 'Payment not found');
+        }
+    
+        $booking->delete();
+    
+        return redirect()->route('rental.index')->with('success', 'Payment deleted successfully');
+
     }
 }

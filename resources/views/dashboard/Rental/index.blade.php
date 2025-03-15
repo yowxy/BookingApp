@@ -27,6 +27,7 @@
                         <th class="border px-4 py-3">Total Harga</th>
                         <th class="border px-4 py-3">Status</th>
                         <th class="border px-4 py-3">Aksi</th>
+                        <th class="border px-4 py-3">Hapus</th>
                     </tr>
             </thead>
                 <tbody>
@@ -49,9 +50,21 @@
                                 <span class="text-gray-500 text-sm">Lunas</span>
                             @endif
                         </td>
+                        <td>
+                            <form action="{{ route('rental.destroy', $booking->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-600 text-white rounded px-4 py-2 text-sm">
+                                    DELETE
+                                </button>
+                            </form>
+                        </td>
+                        
                     </tr>
                     @endforeach
                 </tbody>
+
+
             </table>
 
             <a href="{{ route('rental.create') }}" class="mt-4 inline-block bg-green-500 text-white px-5 py-2 rounded font-semibold hover:bg-green-600">Buat Booking</a>

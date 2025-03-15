@@ -18,13 +18,18 @@ Route::get('/login',function(){
 });
 
 
-Route::get('/', [ ControllersDashboard::class, 'index'])->name(' Dashnboard');
+Route::get('/', [ ControllersDashboard::class, 'index'])->name(name: ' Dashnboard');
 Route::get('/payment',[PaymentController::class, 'index'])->name('payment');
+Route::post('/payment',[PaymentController::class, 'createTransaction'])->name('createTransaction');
+Route::delete('/payment/{id}', [PaymentController::class, 'destroy'])->name('payment.destroy');
+// Route::delete('/destroy/{id}',[RentalPSController])
+
 
 Route::prefix('rental')->name('rental.')->group(function(){
     Route::get('/index',[RentalPSController::class, 'index'])->name('index');
     Route::get('/create',[RentalPSController::class, 'create'])->name('create');
     Route::post('/create', [RentalPSController::class, 'store'])->name('store');
+    Route::delete('/destroy/{id}',[RentalPSController::class, 'destroy'])->name('destroy');
 });
 
 
